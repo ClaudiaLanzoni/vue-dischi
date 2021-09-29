@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <h1>prova di testo</h1>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Main />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Main from './components/Main.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Main,
   }
 }
 </script>
@@ -22,11 +21,6 @@ export default {
 @import "./style/general.scss";
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
 }
 </style>
