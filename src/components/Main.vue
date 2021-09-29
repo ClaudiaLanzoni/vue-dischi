@@ -1,11 +1,11 @@
 <template>
-  <div class="main_container container">
-    <div class="row">
-      <div v-for="(element, index) in albumList" :key="index" class="col-2">
-        <Card :album="element"/>
+  <div class="main_wrap">
+    <div class="main_container container">
+      <div class="row">
+        <div v-for="(element, index) in albumList" :key="index" class="col-2 card">
+          <Card :album="element"/>
+        </div>
       </div>
-
-      
     </div>
   </div>
 </template>
@@ -41,13 +41,26 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped >
 
 @import "../style/variables.scss";
 @import "../style/general.scss";
 
-.main_container {
-  padding: 0 50px 0 50px;
+.main_wrap {
+  background-color: $mainBgColor;
 }
+
+.main_container {
+  padding: 50px 0 50px 50px;
+  
+}
+
+.card {
+  
+  margin: 10px;
+  background-color: $cardColor;
+  border: none;
+  }
+
 
 </style>
