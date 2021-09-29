@@ -1,10 +1,14 @@
 <template>
   <div class="main_wrap">
     <div class="main_container container">
-      <div class="row">
+      <div class="row" v-if="visible">
         <div v-for="(element, index) in albumList" :key="index" class="col-2 card">
           <Card :album="element"/>
         </div>
+      </div>
+
+      <div v-else>
+        <Loader />
       </div>
     </div>
   </div>
@@ -13,6 +17,7 @@
 <script>
 import axios from 'axios';
 import Card from './Card.vue';
+import Loader from './Loader.vue';
 
 export default {
   name: 'Main',
@@ -21,12 +26,14 @@ export default {
   },
 
   components : {
-    Card
+    Card,
+    Loader
   },
 
   data : function () {
     return {
-      albumList : []
+      albumList : [],
+      visible : false
     }
   },
 
@@ -34,7 +41,10 @@ export default {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
     .then(res => {
       this.albumList = res.data.response.slice();
-      console.log(this.albumList)
+      
+      setTimeout(() => {this.visible = true;},
+      3500)
+      //console.log(this.albumList)
       //console.log(res.data);
   });
   }
