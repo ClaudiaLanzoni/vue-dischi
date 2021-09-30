@@ -1,20 +1,23 @@
 <template>
   <div class="main_wrap">
 
-    <label for="genre" class="text-white">Choose a music genre:</label>
-          <select name="genre" id="genre"> <!--v-for="(element, index) in filterGenre" :key="index"-->
-              
-            <option value="metal">Metal</option>
-            <option value="rock">Rock</option>
-            <option value="pop">Pop</option>
-            <option value="jazz">Jazz</option>
-
-          </select>
-
     <div class="main_container container">
+
       <div class="row" v-if="visible">
 
-        <div v-for="(element, index) in albumList" :key="index" class="col-2 card">
+        <div class="d-flex justify-content-center mb-5">
+          <label for="genre" class="label_style">Choose a music genre:</label>
+                <select name="genre" id="genre" v-model="selectedGenre">
+                  <option value="" selected></option>
+                  <option value="Metal">Metal</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Pop">Pop</option>
+                  <option value="Jazz">Jazz</option>
+
+                </select>
+        </div>
+
+        <div v-for="(element, index) in filterGenre" :key="index" class="col-2 card">
           <Card :album="element"/>
         </div>  
       </div>
@@ -46,8 +49,25 @@ export default {
     return {
       albumList : [],
       visible : false,
+      selectedGenre : ''
     }
   },
+
+  computed: {
+    filterGenre: function(){
+            let genreDivision = this.albumList.filter((input) => { 
+              if (this.selectedGenre != '') {
+                return input.genre==this.selectedGenre
+              } else {
+                return true
+              }
+              
+              
+            });
+            return genreDivision
+            
+        }
+  }, 
 
   created : function () {
     axios.get('https://flynn.boolean.careers/exercises/api/array/music')
@@ -70,6 +90,7 @@ export default {
 
 .main_wrap {
   background-color: $mainBgColor;
+  height: 200vh;
 }
 
 .main_container {
@@ -78,11 +99,15 @@ export default {
 }
 
 .card {
-  
   margin: 10px;
   background-color: $cardColor;
   border: none;
   }
 
+.label_style {
+  color: $whiteColor;
+  font-weight: bold;
+  margin-right: 20px;
+}
 
 </style>

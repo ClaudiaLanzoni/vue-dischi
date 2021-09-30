@@ -14,16 +14,7 @@ export default {
         album : Object
     },
 
-    computed: {
-    filterGenre: function(){
-            let genreDivision = this.albumList.filter((input) => { 
-              return input.genre.match(this.albumList.genre)
-              
-            });
-            return genreDivision
-            
-        }
-  }, 
+    
 }
 </script>
 
