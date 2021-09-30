@@ -1,10 +1,22 @@
 <template>
   <div class="main_wrap">
+
+    <label for="genre" class="text-white">Choose a music genre:</label>
+          <select name="genre" id="genre"> <!--v-for="(element, index) in filterGenre" :key="index"-->
+              
+            <option value="metal">Metal</option>
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+            <option value="jazz">Jazz</option>
+
+          </select>
+
     <div class="main_container container">
       <div class="row" v-if="visible">
+
         <div v-for="(element, index) in albumList" :key="index" class="col-2 card">
           <Card :album="element"/>
-        </div>
+        </div>  
       </div>
 
       <div v-else>
@@ -33,7 +45,7 @@ export default {
   data : function () {
     return {
       albumList : [],
-      visible : false
+      visible : false,
     }
   },
 
@@ -44,7 +56,7 @@ export default {
       
       setTimeout(() => {this.visible = true;},
       3500)
-      //console.log(this.albumList)
+      console.log(this.albumList)
       //console.log(res.data);
   });
   }
